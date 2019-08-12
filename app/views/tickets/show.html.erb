@@ -1,0 +1,22 @@
+<div class="row top-pad">
+	<div class="col-md">
+		<h1>New Order</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md">
+		<% @pizzas.each do |pizza| %>
+			<div class="card" style="width: 18rem;">
+			  <img src="<%= url_for(pizza.pic) %>" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title"><%= pizza.name %></h5>
+			    <p class="card-text"><%= truncate(pizza.description, length: 25) %></p>
+			    <p class="card-text">Price: <%= number_to_currency(pizza.price) %></p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  		</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+

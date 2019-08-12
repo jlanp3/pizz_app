@@ -1,0 +1,15 @@
+<div class="row top-pad">
+	<div class="col-md"></div>
+	<div class="col-md align-self-center text-center">
+		<div class="jumbotron">
+		  <h1 class="display-4">Pizz-App!</h1>
+		  <p class="lead">This is a simple pizza app, for testing purpose for RoR.</p>
+		  <hr class="my-4">
+		  <p>Create a Pizza order.</p>
+		  <%= form_for @ticket do |f| %>
+				<%= f.button 'New Order', class: "btn btn-primary btn-lg" %>
+		  <% end %>
+		</div>
+	</div>
+	<div class="col-md"></div>
+</div>

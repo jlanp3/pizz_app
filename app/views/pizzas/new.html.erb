@@ -1,0 +1,25 @@
+<div class="row top-pad">
+	<div class="col text-center">
+		<h1>New Pizza</h1>
+	</div>
+</div>
+
+<div class="row ">
+	<div class="col-md">
+		<%= form_for @pizza do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name, class: "form-control", autofocus: true %>
+
+			<%= f.label :description %>
+			<%= f.text_area :description, class: "form-control" %>
+
+			<%= f.label :price %>
+			<%= f.text_field :price, class: "form-control" %>
+			
+			<%= f.label 'Picture' %>
+			<%= f.file_field :pic, class: "form-control-file" %> <br>
+
+			<%= f.button 'New Pizza', class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
