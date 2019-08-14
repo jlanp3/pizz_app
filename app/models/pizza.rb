@@ -1,6 +1,6 @@
 class Pizza < ApplicationRecord
 	has_one_attached :pic
-	has_many :ticket_pizzas
+	has_many :ticket_pizzas, dependent: :destroy
 	has_many :tickets, through: :ticket_pizzas
 
 	validates :name, presence: true, length: { minimum: 3, maximum: 35}

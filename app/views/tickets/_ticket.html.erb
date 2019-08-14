@@ -1,0 +1,45 @@
+<div class="row" >
+	<div class="col-md" id="outprint">
+		<table class="table table-dark" >
+		  <thead>
+		    <tr>
+		      <th scope="col">Order</th>
+		      <th scope="col">Price</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @ticket_pizzas.where(ticket_id: @ticket.id).each do |ticket_pizza| %>
+			    <tr>
+			      <td><%= ticket_pizza.pizza.name %></td>
+						<td><%= number_to_currency(ticket_pizza.pizza.price, precision: 0) %></td>
+						<td><%= link_to "<span class='close text-danger'>&times;</span>".html_safe, ticket_pizza_path(ticket_pizza), remote: true, method: :delete, data: {confirm: "Are you sure?"} %></td>
+			    </tr>
+		    <% end %>	
+		  </tbody>
+		    <tr>
+		      <th scope="col">Total</th>
+		      <th scope="col"><%= number_to_currency(@ticket.pizzas.sum(:price), precision: 0) %></th>
+		    </tr>
+		    <tr>
+		    	<th scope="col">Staff:</th>
+		      <th scope="col"><%= current_user.name %></th>
+		    </tr>
+		</table>
+		<div class="row text-center">
+			<div class="col-md">
+				<%= image_tag("print.png", :width=>50, :height=>30, :onclick=>"PrintDiv();", :class=>'btn') %>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">     
+  function PrintDiv() {    
+     var divToPrint = document.getElementById('#outprint');
+     var popupWin = window.open('', '_blank', 'width=300,height=300');
+     popupWin.document.open();
+     popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+      popupWin.document.close();
+          }
+</script>

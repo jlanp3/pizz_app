@@ -4,19 +4,30 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md">
+<div class="row align-items-start">
 		<% @pizzas.each do |pizza| %>
-			<div class="card" style="width: 18rem;">
-			  <img src="<%= url_for(pizza.pic) %>" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title"><%= pizza.name %></h5>
-			    <p class="card-text"><%= truncate(pizza.description, length: 25) %></p>
-			    <p class="card-text">Price: <%= number_to_currency(pizza.price) %></p>
-			    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  		</div>
-			</div>
+			<div class="col-md">
+				<div class="card" style="width: 12rem;">
+				  <img src="<%= url_for(pizza.pic) %>" class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title"><%= pizza.name %></h5>
+				    <p class="card-text"><%= truncate(pizza.description, length: 25) %></p>
+				    <p class="card-text">Price: <%= number_to_currency(pizza.price, precision: 0) %></p>
+				    <div class="row">
+				    	<div class="col-md text-center">
+				    		<%= form_for @ticket_pizza, remote: true do |f| %>
+				    			<%= f.hidden_field(:ticket_id, value: @ticket.id) %>
+				    			<%= f.hidden_field(:pizza_id, value: pizza.id) %>
+									<%= f.button 'Order', class: "btn btn-primary" %>
+				    		<% end %>
+				    	</div>
+				    </div>
+		  		</div>
+				</div>
+			</div>	
 		<% end %>
+	<div id="tick">
+		<%= render 'ticket' %>
 	</div>
 </div>
 

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :tickets
   resources :pizzas, except: [:index, :show]
+  resources :ticket_pizzas, except: [:index, :show]
 end

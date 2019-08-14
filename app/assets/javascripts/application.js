@@ -16,3 +16,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function printpage()
+{
+   window.print()
+}
+
+
+$(document).on('turbolinks:load', function(){
+$(".printMe").click(function(){
+   window.print();
+});
+})

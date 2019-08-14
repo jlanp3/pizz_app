@@ -1,10 +1,14 @@
 class TicketsController < ApplicationController
+	respond_to :html, :js
 
 	def index
 		@tickets = Ticket.all
+		@tp = TicketPizza.new
 	end
 
 	def show
+		@ticket_pizzas = TicketPizza.all
+		@ticket_pizza = TicketPizza.new
 		@ticket = Ticket.find(params[:id])
 		@pizzas = Pizza.all
 	end
